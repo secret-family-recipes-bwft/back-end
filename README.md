@@ -1,10 +1,19 @@
-<center><h1>Secret Family Recipes: back-end </h1>
+<center>
 
-#  Endpoints,  Routes and more CheatSheet: 
+ # Secret Family Recipes: back-end 
+
+ #### Endpoints,  Routes and more CheatSheet: 
+---
+
+<br></br>
 
 **Base_url :** https://bw-secret-family-recipes-1.herokuapp.com/
 
+<br></br>
+
 ##  Auth Routes
+---
+<br></br>
 
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
 | ------- | -------- | -------- | ---- | ------ |
@@ -32,9 +41,12 @@
 <br></br>
 
 ## Not Restricted YET but will be later:
-(_will require token once resitrced to gain access_)
+##### (_will require token once resitrced to gain access_)
+---
+
 
 ## Users
+
 (in progress)
 
 <br></br>
