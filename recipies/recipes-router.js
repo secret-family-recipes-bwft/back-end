@@ -53,8 +53,35 @@ router.get('/recent/:limit', (req, res) => {
     })
 })
 
+//``````POST````````
+//in users-router.js
 
 
+//``````PUT``````````
+router.put('/:id',validateRecipeId, (req, res) => {
+    if(!Object.keys(req.body).length){
+        res.status(400).json({message: 'nothing to update was provided...'})
+    }
+
+    RecipeModel.updateRecipe(req.body, req.params.id)
+    .then( updatedRecipe => {
+        res.json({success: 'updated!', updatedRecipe})
+    })
+    .catch( err => {
+        res.status(500).json({error: err.message})
+    })
+})
+
+//``````DELETE```````
+router.delete('/:id',validateRecipeId, (req, res) => {
+    RecipeModel.removeRecipe(req.params.id)
+    .then( deletedRecipe => {
+        res.json({success: 'deleted!', deletedRecipe})
+    })
+    .catch( err => {
+        res.status(500).json({error: err.message})
+    })
+})
 
 //````````custom Middleware``````
 function validateRecipeId(req, res, next) {

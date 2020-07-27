@@ -9,6 +9,8 @@ const AuthRouter = require('./auth/auth-router')
 const UserRouter = require('./users/users-router') 
 const RecipeRouter = require('./recipies/recipes-router')
 
+const authenticate = require('./auth/authenticate-middleware')
+
 const server = express()
 
 server.use(helmet())
@@ -21,7 +23,7 @@ server.get('/', (req, res) => {
 
 // server.use 
 server.use('/api/auth', AuthRouter)
-server.use('/api/users', UserRouter)
-server.use('/api/recipes', RecipeRouter)
+server.use('/api/users', UserRouter) //needs authentication
+server.use('/api/recipes', RecipeRouter) //needs authentication
 
 module.exports = server
