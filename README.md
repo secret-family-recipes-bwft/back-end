@@ -57,3 +57,4 @@
 | GET   | get all recipes | api/recipes | N/A | Array of all Recipes: `res.data`|
 
 
+</center>
