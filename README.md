@@ -48,7 +48,7 @@
 
 ## Not Restricted YET but will be later:
 
-##### (_will require token once resitrced to gain access_)
+##### (_will require token once resitrced to gain access-- for now everything is open until front-end's login/registration forms are done_)
 ---
 
 
@@ -72,12 +72,15 @@
 | GET   | get recipe by id | api/recipes/:id | :id (recipe id)| Object with Recipe: `res.data`|
 | GET   | get recipe by category | api/recipes/category/:category | :category | Array with Recipes of specified category: `res.data`|
 | GET   | get recent recipes | api/recipes/recent/:limit | :limit | Array of :limit number of recent recipes: `res.data`|
+| PUT   | update existing recipe | api/recipes/:id | :id <br><br> 
+changes/field(s) to update | Object with updated Recipe: `res.data.updatedRecipe` and a success message: `res.data.success`|
+| DELETE  | delete existing recipe | api/recipes/:id | :id  | Object with deleted Recipe: `res.data.deletedRecipe` and a success message: `res.data.success`|
 
 
 
 ### Recipe Info:
 
-| Input | Required | Type | Notes|
+| Input | Required | Type | Notes/Tips |
 |--|--|--|--|
 | user_id | yes | integer | ```no need to send it in POST request; backend provides it automatically``` |
 | title | yes | string | 
@@ -87,4 +90,3 @@
 | category | yes | string |
 | picture_url | no | string |
 
- ###### **_*note:_** _I will try to auto implement the user_id for the front-end_ 

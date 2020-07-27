@@ -4,7 +4,9 @@ module.exports = {
     findRecipes,
     findRecipeById,
     findRecipesBy,
-    addRecipe
+    addRecipe,
+    updateRecipe,
+    removeRecipe
 }
 
 function findRecipes() {
@@ -28,5 +30,26 @@ function addRecipe(newRecipe) {
         .insert(newRecipe, 'id')
         .then(([id]) => {
             return findRecipeById(id)
+        })
+}
+
+function updateRecipe(changes, id) {
+    return db('recipes')
+        .where({ id })
+        .update(changes)
+        .then(() => {
+            return findRecipeById(id)
+        })
+}
+
+function removeRecipe(id) {
+    return findRecipeById(id)
+        .then(deletedRecipe => {
+            return db('recipes')
+                .where({ id })
+                .del()
+                .then(() => {
+                    return deletedRecipe
+                })
         })
 }

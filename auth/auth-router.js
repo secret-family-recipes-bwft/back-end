@@ -10,7 +10,7 @@ const { isValid, gotEmail } = require('../users/users-middleware')
 //register
 router.post('/register', (req, res) => {
     if (isValid(req.body) && gotEmail(req.body)) {
-        const rounds = process.env.BCRYPT_ROUNDS || 12
+        const rounds = process.env.BCRYPT_ROUNDS
 
         const hash = bcryptjs.hashSync(req.body.password, rounds)
 
