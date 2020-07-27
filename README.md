@@ -1,8 +1,9 @@
-<center>
 
- # Secret Family Recipes: back-end 
 
- #### Endpoints,  Routes and more CheatSheet: 
+<h1 align="center">  Secret Family Recipes: back-end </h1>
+
+ <h4 align='center'> Endpoints,  Routes and more CheatSheet: </h4>
+
 ---
 
 <br></br>
@@ -57,4 +58,3 @@
 | GET   | get all recipes | api/recipes | N/A | Array of all Recipes: `res.data`|
 
 
-</center>
