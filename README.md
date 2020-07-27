@@ -61,6 +61,8 @@
 | GET   | get all users | api/users | N/A | Array of all Users: `res.data`|
 | GET   | get user by id | api/users/:id | :id (user id)| Object with a user: `res.data`|
 | GET   | get user's recipes by user id | api/users/:id/recipes | :id (user id)| Array of a user's Recipes: `res.data`|
+| POST   | post new recipe for a specific user | api/users/:id/recipes | :id <br></br> Recipe info: `title`, `ingredients`, `instructions`, `category`, `picture_url`(optional) | Object with the newly created recipe `res.data`|
+
 <br></br>
 
 ## Recipes
@@ -70,7 +72,7 @@
 | GET   | get recipe by id | api/recipes/:id | :id (recipe id)| Object with Recipe: `res.data`|
 | GET   | get recipe by category | api/recipes/category/:category | :category | Array with Recipes of specified category: `res.data`|
 | GET   | get recent recipes | api/recipes/recent/:limit | :limit | Array of :limit number of recent recipes: `res.data`|
-| POST   | post new recipe for a specific user | api/users/:id/recipes | :id <br></br> Recipe info: `title`, `ingredients`, `instructions`, `category`, `picture_url`(optional) | Object with the newly created recipe `res.data`|
+
 
 
 ### Recipe Info:
@@ -79,7 +81,7 @@
 |--|--|--|--|
 | user_id | yes | integer | ```no need to send it in POST request; backend provides it automatically``` |
 | title | yes | string | 
-| source | yes | string |```no need to send it in POST request; backend provides it automatically```|
+| source | yes | string |```no need to send it in POST request; backend provides it automatically as the user's username```|
 | ingredients | yes | text |
 | instructions | yes | text |
 | category | yes | string |
