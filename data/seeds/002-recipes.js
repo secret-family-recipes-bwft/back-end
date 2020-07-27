@@ -1,10 +1,8 @@
 
 exports.seed = function (knex) {
-  // Deletes ALL existing entries
-  return knex('recipes').truncate()
-    .then(function () {
-      // Inserts seed entries
-      return knex('recipes').insert([
+  // 000-cleanup.js already cleaned out all tables
+
+const recipes = [
 
         {
           user_id: 1,
@@ -60,6 +58,9 @@ exports.seed = function (knex) {
           category: 'snacks',
           picture_url: 'https://img.sndimg.com/food/image/upload/c_thumb,q_80,w_596,h_335/v1/img/recipes/24/39/65/picIDMFir.jpg'
         },
-      ]);
-    });
+      ]
+ 
+      return knex('recipes')
+      .insert(recipes)
+      .then(() => console.log("\n== Seed data for recipes table added. ==\n"));
 };

@@ -9,14 +9,16 @@ const hashIsaac = bcryptjs.hashSync(isaacPassword, 12)
 const hashJoe = bcryptjs.hashSync(joePassword, 12)
 
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('users').truncate()
-    .then(function () {
-      // Inserts seed entries
-      return knex('users').insert([
-        { username: 'marta', password: hashMarta, email: 'marta@marta.com'},
-        { username: 'isaac', password: hashIsaac, email: 'isaac@isaac.com'},
-        { username: 'joe', password: hashJoe, email: 'joe@joe.com'}
-      ]);
-    });
+  // 000-cleanup.js already cleaned out all tables
+
+  const users = [
+    { username: 'marta', password: hashMarta, email: 'marta@marta.com'},
+    { username: 'isaac', password: hashIsaac, email: 'isaac@isaac.com'},
+    { username: 'joe', password: hashJoe, email: 'joe@joe.com'}
+  ]
+
+      return knex('users')
+      .insert(users)
+      .then(() => console.log("\n== Seed data for users table added. ==\n"));
+   
 };
