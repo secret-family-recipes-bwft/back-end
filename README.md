@@ -81,7 +81,7 @@
 |--|--|--|--|
 | user_id | yes | integer | ```no need to send it in POST request; backend provides it automatically``` |
 | title | yes | string | 
-| source | yes | string |```no need to send it in POST request; backend provides it automatically```|
+| source | yes | string |```no need to send it in POST request; backend provides it automatically as the user's username```|
 | ingredients | yes | text |
 | instructions | yes | text |
 | category | yes | string |
