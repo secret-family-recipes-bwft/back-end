@@ -45,30 +45,39 @@
 <br></br>
 
 ## Not Restricted YET but will be later:
----
+
 ##### (_will require token once resitrced to gain access_)
+---
+
 
 <br></br>
 
 ## Users
 
-(in progress)
-
+| Method  | Type     | Endpoint | Send | Return (*front-end access*)|
+| ------- | -------- | -------- | ---- | ------ |
+| GET   | get all users | api/users | N/A | Array of all Users: `res.data`|
+| GET   | get user by id | api/users/:id | :id (user id)| Object with a user: `res.data`|
+| GET   | get user's recipes by user id | api/users/:id/recipes | :id (user id)| Array of a user's Recipes: `res.data`|
 <br></br>
 
 ## Recipes
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
 | ------- | -------- | -------- | ---- | ------ |
 | GET   | get all recipes | api/recipes | N/A | Array of all Recipes: `res.data`|
+| GET   | get recipe by id | api/recipes/:id | :id (recipe id)| Object with Recipe: `res.data`|
+| GET   | get recipe by category | api/recipes/category/:category | :category | Array with Recipes of specified category: `res.data`|
+| GET   | get recent recipes | api/recipes/recent/:limit | :limit | Array of :limit number of recent recipes: `res.data`|
+| POST   | post new recipe for a specific user | api/users/:id/recipes | :id <br></br> Recipe info: `title`, `ingredients`, `instructions`, `category`, `picture_url`(optional) | Object with the newly created recipe `res.data`|
 
 
 ### Recipe Info:
 
-| Input | Required | Type |
-|--|--|--|
-| user_id | yes | integer |
-| title | yes | string |
-| source | yes | string |
+| Input | Required | Type | Notes|
+|--|--|--|--|
+| user_id | yes | integer | ```no need to send it in POST request; backend provides it automatically``` |
+| title | yes | string | 
+| source | yes | string |```no need to send it in POST request; backend provides it automatically```|
 | ingredients | yes | text |
 | instructions | yes | text |
 | category | yes | string |
