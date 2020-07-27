@@ -12,7 +12,7 @@
 
 <br></br>
 
-##  Auth Routes
+<h2 align="center">  Auth Routes </h2>
 ---
 
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
@@ -54,7 +54,8 @@
 
 <br></br>
 
-## Users
+<h2 align="center">  Users </h2>
+---
 
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
 | ------- | -------- | -------- | ---- | ------ |
@@ -65,7 +66,9 @@
 
 <br></br>
 
-## Recipes
+<h2 align="center">  Recipes </h2>
+---
+
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
 | ------- | -------- | -------- | ---- | ------ |
 | GET   | get all recipes | api/recipes | N/A | Array of all Recipes: `res.data`|
