@@ -46,9 +46,9 @@
 
 <br></br>
 
-## Not Restricted YET but will be later:
+## Restricted:
 
-##### (_will require token once resitrced to gain access-- for now everything is open until front-end's login/registration forms are done_)
+##### (_require token to gain access_)
 ---
 
 
@@ -73,7 +73,7 @@
 | ------- | -------- | -------- | ---- | ------ |
 | GET   | get all recipes | api/recipes | N/A | Array of all Recipes: `res.data`|
 | GET   | get recipe by id | api/recipes/:id | :id (recipe id)| Object with Recipe: `res.data`|
-| GET   | get recipe by category | api/recipes/category/:category | :category | Array with Recipes of specified category: `res.data`|
+| GET   | get recipe by category | api/recipes?category=categoryName | =category <br></br> (example: api/recipes?category=dinner)  | Array with Recipes of specified category: `res.data`|
 | GET   | get recent recipes | api/recipes/recent/:limit | :limit | Array of :limit number of recent recipes: `res.data`|
 | PUT   | update existing recipe | api/recipes/:id | :id <br><br> changes/field(s) to update | Object with updated Recipe: `res.data.updatedRecipe` and a success message: `res.data.success`|
 | DELETE  | delete existing recipe | api/recipes/:id | :id  | Object with deleted Recipe: `res.data.deletedRecipe` and a success message: `res.data.success`|
