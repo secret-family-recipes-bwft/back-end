@@ -92,9 +92,9 @@
 | source | yes | string |```no need to send it in POST request; backend provides it automatically as the user's username```|
 | category | yes | string |
 | picture_url | no | string | 
-| country_of_origin | no | string | defaults to an empty string |
+| country_of_origin | no | string | defaults to `unknown` |
 | tradition | no | text | defaults to `'none'` |
-| originator | no | string | defaults to an empty string |
+| originator | no | string | defaults to `unknown`|
 | prepTime | no | string | defaults to `'0 minutes'` |
 | serving_size | no | integer | defaults to `1` |
 

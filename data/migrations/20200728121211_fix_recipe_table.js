@@ -4,9 +4,9 @@ exports.up = function (knex) {
         tbl.dropColumn('ingredients')
         tbl.dropColumn('instructions')
 
-        tbl.string('country_of_origin').notNullable().defaultTo('')
+        tbl.string('country_of_origin').notNullable().defaultTo('unknown')
         tbl.text('tradition', 'LONGTEXT').defaultTo('none')
-        tbl.string('originator', 256).defaultTo('')
+        tbl.string('originator', 256).defaultTo('unknown')
         tbl.string('prepTime').defaultTo('0 minutes')
         tbl.integer('serving_size').defaultTo(1)
     })
