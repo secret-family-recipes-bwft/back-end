@@ -15,7 +15,7 @@ function addIngredientToRecipe(newIngredient, recipe_id, quantity, measure) {
     .insert( newIngredient, 'id')
     .then( ([id])=> {
         return db('recipes_ingredients')
-        .insert({recipe_id, ingredient_id: id, quantity, measure}, 'id')
+        .insert({recipe_id, ingredient_id: id, quantity, measure})
         .then(() =>{
             return db('ingredients')
             .where({id})
