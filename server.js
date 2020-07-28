@@ -6,8 +6,8 @@ const helmet = require('helmet')
 
 //Routers users/recipes:
 const AuthRouter = require('./auth/auth-router')
-const UserRouter = require('./users/users-router') 
-const RecipeRouter = require('./recipies/recipes-router')
+const UserRouter = require('./components/users/users-router') 
+const RecipeRouter = require('./components/recipies/recipes-router')
 
 const authenticate = require('./auth/authenticate-middleware')
 

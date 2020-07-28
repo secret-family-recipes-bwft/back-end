@@ -45,9 +45,9 @@ router.get('/:id/recipes', (req, res) => {
 router.post('/:id/recipes', (req, res) => {
 
     if (!Object.keys(req.body).length) {
-        res.status(400).json({ message: 'nothing to add was provided...' })
-    } else if (!req.body.title || !req.body.ingredients || !req.body.instructions || !req.body.category) {
-        res.status(400).json({ message: 'missing required field title and/or ingredients and/or instructions and/pr category ' })
+        res.status(400).json({ message: 'nothing to add was provided...' }) 
+    } else if (!req.body.title || !req.body.category) {
+        res.status(400).json({ message: 'missing required field title and/or category ' })
     }
 
     UserModel.findUserById(req.params.id)
@@ -66,8 +66,8 @@ router.post('/:id/recipes', (req, res) => {
         res.status(500).json({error: err.message})
     })
 
-
 })
+
 
 //``````custom Middleware```````
 function validateUserId(req, res, next) {
