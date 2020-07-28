@@ -1,11 +1,12 @@
-const db = require('../data/dbConfig')
+const db = require('../../data/dbConfig')
 
 module.exports = {
     addUser,
     findUsers,
     findUserById,
     findUsersBy,
-    findUserRecipes
+    findUserRecipes,
+    findUserRecipesWithAllInfo // <--
 }
 
 function addUser (newUser) {
@@ -39,4 +40,8 @@ function findUserRecipes (user_id) {
     .select('r.*','u.username')
     .join('recipes as r', 'r.user_id', 'u.id')
     .where('u.id','=', user_id)
+}
+
+function findUserRecipesWithAllInfo (user_id) {
+
 }
