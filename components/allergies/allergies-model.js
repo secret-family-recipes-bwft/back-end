@@ -15,7 +15,7 @@ function addAllergyToRecipe(newAllergy, recipe_id) {
     .insert( newAllergy, 'id')
     .then( ([id])=> {
         return db('recipes_allergies')
-        .insert({recipe_id, allergy_id: id}, 'id')
+        .insert({recipe_id, allergy_id: id})
         .then(() =>{
             return db('allergies')
             .where({id})
