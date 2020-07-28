@@ -46,9 +46,9 @@
 
 <br></br>
 
-## Not Restricted YET but will be later:
+## Restricted:
 
-##### (_will require token once resitrced to gain access-- for now everything is open until front-end's login/registration forms are done_)
+##### (_require token to gain access_)
 ---
 
 
