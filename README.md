@@ -132,8 +132,8 @@
 
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
 | ------- | -------- | -------- | ---- | ------ |
-| PUT   | upload picture for an EXISTING recipe by recipe id | api/recipes/:id/image | :id | Object with the updated recipe nopw including the picture ulr: `res.data.recipe`|
+| PUT   | upload picture for an EXISTING recipe by recipe id | api/recipes/:id/image | :id <br></br> image file as `form-data` | Object with the updated recipe nopw including the picture ulr: `res.data.recipe`|
 
- #### **_*note:_** _This method requires to send a file as `form-data` and creates a url for the file selected/uploaded_ 
+ #### **_*note:_** _This method requires to send a file as `form-data` and creates a secure url for the file selected/uploaded_ 
 
  <img src='./cloudinaryMulter.jpg'>
