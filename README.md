@@ -121,7 +121,7 @@
 
 <br></br>
 
-## Additional Route(s)
+## Additional Route(s) -- (code commented out, because it was conflicting with Heroku. This route is no longer working)
 
 ##### (_ability to upload picture without typing out its whole url_)
 ---

@@ -23,7 +23,7 @@ server.get('/', (req, res) => {
 
 // server.use 
 server.use('/api/auth', AuthRouter)
-server.use('/api/users',  UserRouter) //needs authentication
-server.use('/api/recipes',  RecipeRouter) //needs authentication
+server.use('/api/users', authenticate, UserRouter) //needs authentication
+server.use('/api/recipes', authenticate, RecipeRouter) //needs authentication
 
 module.exports = server
