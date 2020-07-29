@@ -6,15 +6,15 @@ const AllergyModel = require('../allergies/allergies-model')
 const InstructionsModel = require('../instructions/instructions-model')
 
 //``````standup``````````
-const cloudinary = require('../../config/cloudinaryConfig')
-const multer = require('../../config/multerConfig')
-// const { dataUri } = require('../../config/multerConfig')
-const cloudinaryConfig = cloudinary.cloudinaryConfig
-const uploader = cloudinary.uploader
-const multerUploads = multer.multerUploads
-// const Datauri = multer.dataUri
-//recipe must be uploaded first -- then we can upload picture through multer
-const datauri = multer.dataUri
+// const cloudinary = require('../../config/cloudinaryConfig')
+// const multer = require('../../config/multerConfig')
+// // const { dataUri } = require('../../config/multerConfig')
+// const cloudinaryConfig = cloudinary.cloudinaryConfig
+// const uploader = cloudinary.uploader
+// const multerUploads = multer.multerUploads
+// // const Datauri = multer.dataUri
+// //recipe must be uploaded first -- then we can upload picture through multer
+// const datauri = multer.dataUri
 //`````````````````````
 
 
@@ -210,23 +210,23 @@ function validateRecipeId(req, res, next) {
 }
 
 //```````````````Uploading picture, standup``````````````````
-router.put('/:id/image',validateRecipeId, multerUploads.single('image-raw'), cloudinaryConfig,  (req, res) => { //'image-raw' => whatever you call it in the body
-    const file = datauri(req)
+// router.put('/:id/image',validateRecipeId, multerUploads.single('image-raw'), cloudinaryConfig,  (req, res) => { //'image-raw' => whatever you call it in the body
+//     const file = datauri(req)
 
-    uploader.upload(file.content,
-        { dpr: "auto", responsive:true, width: "auto", crop: "scale"}, //object for transformations that you can do
-        (error, response) => {
-  console.log(response)
-            req.image = response.secure_url
-            RecipeModel.updateRecipe({picture_url: req.image}, +req.params.id)
-            .then( recipe => {
-                res.status(200).json({recipe})
-            })
-            .catch(err => {
-                res.status(500).json({error: err.message})
-            })
-        }
-        )
-})
+//     uploader.upload(file.content,
+//         { dpr: "auto", responsive:true, width: "auto", crop: "scale"}, //object for transformations that you can do
+//         (error, response) => {
+//   console.log(response)
+//             req.image = response.secure_url
+//             RecipeModel.updateRecipe({picture_url: req.image}, +req.params.id)
+//             .then( recipe => {
+//                 res.status(200).json({recipe})
+//             })
+//             .catch(err => {
+//                 res.status(500).json({error: err.message})
+//             })
+//         }
+//         )
+// })
 
 module.exports = router
