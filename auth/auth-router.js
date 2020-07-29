@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken') //token
 const router = require('express').Router()
 
 const UserModel = require('../components/users/users-model')
-const { isValid, gotEmail } = require('../components/users/users-middleware')
+const { isValid, gotEmail } = require('../users/users-middleware')
 
 //````````POST`````````
 //register

@@ -5,11 +5,11 @@ const helmet = require('helmet')
 //authentication function
 
 //Routers users/recipes:
-const AuthRouter = require('./auth/auth-router')
+const AuthRouter = require('./components/auth/auth-router')
 const UserRouter = require('./components/users/users-router') 
 const RecipeRouter = require('./components/recipies/recipes-router')
 
-const authenticate = require('./auth/authenticate-middleware')
+const authenticate = require('./components/auth/authenticate-middleware')
 
 const server = express()
 

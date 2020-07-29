@@ -5,6 +5,21 @@ const IngredientModel = require('../ingredients/ingredients-model')
 const AllergyModel = require('../allergies/allergies-model')
 const InstructionsModel = require('../instructions/instructions-model')
 
+//``````standup``````````
+const cloudinary = require('../../config/cloudinaryConfig')
+const multer = require('../../config/multerConfig')
+// const { dataUri } = require('../../config/multerConfig')
+const cloudinaryConfig = cloudinary.cloudinaryConfig
+const uploader = cloudinary.uploader
+const multerUploads = multer.multerUploads
+// const Datauri = multer.dataUri
+//recipe must be uploaded first -- then we can upload picture through multer
+const datauri = multer.dataUri
+//`````````````````````
+
+
+
+
 //````````GET``````````
 // get recipes
 router.get('/', (req, res) => {
@@ -45,10 +60,10 @@ router.get('/:id', validateRecipeId, (req, res) => {
     ]
 
     Promise.all(promises)
-        .then( ([recipe, ingredients, allergies, instructions]) => {
-            res.json({recipe, ingredients, allergies, instructions})
+        .then(([recipe, ingredients, allergies, instructions]) => {
+            res.json({ recipe, ingredients, allergies, instructions })
         })
-       .catch(err => {
+        .catch(err => {
             res.status(500).json({ error: err.message })
         })
     // RecipeModel.findRecipeById(req.params.id)
@@ -93,61 +108,61 @@ router.get('/recent/:limit', (req, res) => {
 
 
 //post ingredient by recipe id
-router.post('/:id/ingredients',validateRecipeId, (req, res) => {
+router.post('/:id/ingredients', validateRecipeId, (req, res) => {
     if (!Object.keys(req.body).length) {
         res.status(400).json({ message: 'nothing to add was provided..' })
     } else if (!req.body.name) {
         res.status(400).json({ message: 'missing required field name' })
-    } else if (!req.body.quantity || !req.body.measure){
+    } else if (!req.body.quantity || !req.body.measure) {
         res.status(400).json({ message: 'please provide quantity and measure(ex: cups, tbs, etc) for yor indgredient' })
     }
 
-    const name = {name: req.body.name}
+    const name = { name: req.body.name }
 
     IngredientModel.addIngredientToRecipe(name, req.params.id, req.body.quantity, req.body.measure)
-    .then( newIngredient => {
-        console.log(newIngredient)
-        res.json(newIngredient)
-    })
-    .catch(err => {
-        console.log(name)
-        res.status(500).json({ error: err.message })
-    })
+        .then(newIngredient => {
+            console.log(newIngredient)
+            res.json(newIngredient)
+        })
+        .catch(err => {
+            console.log(name)
+            res.status(500).json({ error: err.message })
+        })
 })
 
 //post allergies by recipe id
-router.post('/:id/allergies',validateRecipeId, (req, res) => {
+router.post('/:id/allergies', validateRecipeId, (req, res) => {
     if (!Object.keys(req.body).length) {
         res.status(400).json({ message: 'nothing to add was provided..' })
     } else if (!req.body.type) {
         res.status(400).json({ message: 'missing required field type' })
-    } 
+    }
 
     AllergyModel.addAllergyToRecipe(req.body, req.params.id)
-    .then( newAllergy => {
-        res.json(newAllergy)
-    })
-    .catch(err => {
-        res.status(500).json({ error: err.message })
-    })
+        .then(newAllergy => {
+            res.json(newAllergy)
+        })
+        .catch(err => {
+            res.status(500).json({ error: err.message })
+        })
 })
 
 //post instructions by recipe id
-router.post('/:id/instructions',validateRecipeId, (req, res) => {
+router.post('/:id/instructions', validateRecipeId, (req, res) => {
     if (!Object.keys(req.body).length) {
-        res.status(400).json({ message: 'nothing to add was provided..' }) 
+        res.status(400).json({ message: 'nothing to add was provided..' })
     } else if (!req.body.step_number || !req.body.instructions) {
         res.status(400).json({ message: 'missing required fields step_number and/or instructions' })
     }
 
-        InstructionsModel.addInstructionsToRecipe({...req.body, recipe_id: req.params.id})
+    InstructionsModel.addInstructionsToRecipe({ ...req.body, recipe_id: req.params.id })
         .then(newStep => {
             res.json(newStep)
         })
         .catch(err => {
             res.status(500).json({ error: err.message })
         })
-    })
+})
 
 
 //``````PUT``````````
@@ -194,5 +209,24 @@ function validateRecipeId(req, res, next) {
         })
 }
 
+//```````````````Uploading picture, standup``````````````````
+router.put('/:id/image',validateRecipeId, multerUploads.single('image-raw'), cloudinaryConfig,  (req, res) => { //'image-raw' => whatever you call it in the body
+    const file = datauri(req)
+
+    uploader.upload(file.content,
+        { dpr: "auto", responsive:true, width: "auto", crop: "scale"}, //object for transformations that you can do
+        (error, response) => {
+  console.log(response)
+            req.image = response.secure_url
+            RecipeModel.updateRecipe({picture_url: req.image}, +req.params.id)
+            .then( recipe => {
+                res.status(200).json({recipe})
+            })
+            .catch(err => {
+                res.status(500).json({error: err.message})
+            })
+        }
+        )
+})
 
 module.exports = router
