@@ -65,7 +65,7 @@ function makeJWTToken(user) {
         username: user.username
     }
 
-    const secret = process.env.JWT_SECRET
+    const secret = process.env.JWT_SECRET || 'keept it secret, keep it safe!'
 
     const options = {
         expiresIn: '1h'

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization
-  const secret = process.env.JWT_SECRET
+  const secret = process.env.JWT_SECRET || 'keept it secret, keep it safe!'
 
   if(token) {
     jwt.verify(token, secret, (err, decodedToken) => {
