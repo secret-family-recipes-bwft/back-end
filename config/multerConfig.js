@@ -1,12 +1,12 @@
-const multer = require('multer')
-const Datauri = require('datauri/parser') // update the import to this
-const path = require('path')
+// const multer = require('multer')
+// const Datauri = require('datauri/parser') // update the import to this
+// const path = require('path')
 
-const storage = multer.memoryStorage()
-const multerUploads = multer({ storage })
+// const storage = multer.memoryStorage()
+// const multerUploads = multer({ storage })
 
-const dUri = new Datauri()
+// const dUri = new Datauri()
 
-const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
+// const dataUri = req => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer)
 
-module.exports = { multerUploads, dataUri }
+// module.exports = { multerUploads, dataUri }
