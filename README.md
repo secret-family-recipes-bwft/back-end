@@ -13,6 +13,7 @@
 <br></br>
 
 <h2 align="center">  Auth Routes </h2>
+
 ---
 
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
@@ -55,6 +56,7 @@
 <br></br>
 
 <h2 align="center">  Users </h2>
+
 ---
 
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
@@ -67,6 +69,7 @@
 <br></br>
 
 <h2 align="center">  Recipes </h2>
+
 ---
 
 | Method  | Type     | Endpoint | Send | Return (*front-end access*)|
@@ -115,3 +118,22 @@
 | step_number | yes | integer | 
 | instructions | yes | text | `describes the step` |
 | recipe_id | yes | integer | `no need to send it in POST request; backend provides it automatically` |
+
+<br></br>
+
+## Additional Route(s)
+
+##### (_ability to upload picture without typing out its whole url_)
+---
+
+<h2 align="center">  Image </h2>
+
+---
+
+| Method  | Type     | Endpoint | Send | Return (*front-end access*)|
+| ------- | -------- | -------- | ---- | ------ |
+| PUT   | upload picture for an EXISTING recipe by recipe id | api/recipes/:id/image | :id | Object with the updated recipe nopw including the picture ulr: `res.data.recipe`|
+
+ #### **_*note:_** _This method requires to send a file as `form-data` and creates a url for the file selected/uploaded_ 
+
+ <img src='./cloudinaryMulter.jpg'>
