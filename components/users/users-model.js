@@ -6,7 +6,6 @@ module.exports = {
     findUserById,
     findUsersBy,
     findUserRecipes,
-    findUserRecipesWithAllInfo // <--
 }
 
 function addUser (newUser) {
@@ -42,6 +41,3 @@ function findUserRecipes (user_id) {
     .where('u.id','=', user_id)
 }
 
-function findUserRecipesWithAllInfo (user_id) {
-
-}
