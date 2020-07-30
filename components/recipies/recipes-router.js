@@ -122,7 +122,7 @@ router.post('/:id/ingredients', validateRecipeId, (req, res) => {
     IngredientModel.addIngredientToRecipe(name, req.params.id, req.body.quantity, req.body.measure)
         .then(newIngredient => {
             console.log(newIngredient)
-            res.json(newIngredient)
+            res.status(201).json(newIngredient)
         })
         .catch(err => {
             console.log(name)
@@ -140,7 +140,7 @@ router.post('/:id/allergies', validateRecipeId, (req, res) => {
 
     AllergyModel.addAllergyToRecipe(req.body, req.params.id)
         .then(newAllergy => {
-            res.json(newAllergy)
+            res.status(201).json(newAllergy)
         })
         .catch(err => {
             res.status(500).json({ error: err.message })
@@ -157,7 +157,7 @@ router.post('/:id/instructions', validateRecipeId, (req, res) => {
 
     InstructionsModel.addInstructionsToRecipe({ ...req.body, recipe_id: req.params.id })
         .then(newStep => {
-            res.json(newStep)
+            res.status(201).json(newStep)
         })
         .catch(err => {
             res.status(500).json({ error: err.message })
