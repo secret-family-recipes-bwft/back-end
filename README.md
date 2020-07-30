@@ -8,7 +8,7 @@
 
 <br></br>
 
-**Base_url :** https://bw-secret-family-recipes-1.herokuapp.com/ --> might change; that's the url for 'marta-krawczyk' branch
+**Base_url :** https://bw-secret-family-recipes-1.herokuapp.com/ 
 
 <br></br>
 

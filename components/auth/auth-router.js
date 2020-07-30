@@ -6,6 +6,7 @@ const router = require('express').Router()
 const UserModel = require('../users/users-model')
 const { isValid, gotEmail } = require('../users/users-middleware')
 
+require('dotenv').config()
 //````````POST`````````
 //register
 router.post('/register', (req, res) => {
@@ -65,7 +66,7 @@ function makeJWTToken(user) {
         username: user.username
     }
 
-    const secret = process.env.JWT_SECRET || 'keept it secret, keep it safe!'
+    const secret = process.env.JWT_SECRET 
 
     const options = {
         expiresIn: '1h'

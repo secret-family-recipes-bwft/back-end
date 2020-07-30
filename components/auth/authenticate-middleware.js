@@ -1,10 +1,11 @@
 //checks if the user is logged in
+require('dotenv').config()
 
 const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization
-  const secret = process.env.JWT_SECRET || 'keept it secret, keep it safe!'
+  const secret = process.env.JWT_SECRET 
 
   if(token) {
     jwt.verify(token, secret, (err, decodedToken) => {

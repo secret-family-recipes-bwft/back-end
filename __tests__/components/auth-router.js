@@ -1,3 +1,4 @@
+
 const supertest = require('supertest')
 
 const server = require('../../server')
@@ -6,18 +7,20 @@ const db = require('../../data/dbConfig')
 
 const bcryptjs = require('bcryptjs')
 
+const knexCleaner = require('knex-cleaner')
+
 describe('auth-router', () => {
-    // beforeEach(async () => {
-    //     await db('users').truncate()
-    // })
+
     beforeEach(async () => {
+        await knexCleaner.clean(db)
+
         const user = { username: 'frania', password: 'frania', email: 'frania@frania.com' }
 
         const hash = bcryptjs.hashSync(user.password, 12)
 
         user.password = hash
 
-        await db('users').truncate()
+        // await db('users').truncate()
         await db('users').insert(user)
     })
 
@@ -27,43 +30,49 @@ describe('auth-router', () => {
         //     await db('users').truncate()
         // })
 
-        it('should respond with status 201 OK', () => {
-            return supertest(server)
+        it('should respond with status 201 OK', async () => {
+            // return supertest(server)
+            //     .post('/api/auth/register')
+            //     .send({ username: "marta", password: "marta", email: "marta@marta.com" })
+            //     .then(res => {
+            //         expect(res.status).toBe(201)
+            //     })
+
+            const res = await supertest(server)
                 .post('/api/auth/register')
                 .send({ username: "marta", password: "marta", email: "marta@marta.com" })
-                .then(res => {
-                    expect(res.status).toBe(201)
-                })
+
+            expect(res.status).toBe(201)
         })
 
-        it('should respond with token', () => {
-            return supertest(server)
+        it('should respond with token', async () => {
+            const res = await supertest(server)
                 .post('/api/auth/register')
                 .send({ username: "marta", password: "marta", email: "marta@marta.com" })
-                .then(res => {
+                // .then(res => {
                     expect(res.body.token).toBeDefined()
-                })
+                // })
         })
 
-        it('should respond with new user', () => {
-            return supertest(server)
+        it('should respond with new user', async () => {
+            const res = await supertest(server)
                 .post('/api/auth/register')
                 .send({ username: "marta", password: "marta", email: "marta@marta.com" })
-                .then(res => {
+                // .then(res => {
                     expect(res.body.data.username).toBe('marta')
                     expect(res.body.data.email).toBe('marta@marta.com')
-                })
+                // })
         })
 
 
-        it('should respond with status 400 when sending an empty object and a json msg', () => {
-            return supertest(server)
+        it('should respond with status 400 when sending an empty object and a json msg', async () => {
+            const res = await supertest(server)
                 .post('/api/auth/register')
                 .send({})
-                .then(res => {
+                // .then(res => {
                     expect(res.status).toBe(400)
                     expect(res.type).toMatch(/json/i)
-                })
+                // })
         })
 
 
@@ -83,15 +92,14 @@ describe('auth-router', () => {
         //     await db('users').insert(user)
         // })
 
-        it('should respond with status 201 OK', () => {
+        it('should respond with status 201 OK', async () => {
 
-
-            return supertest(server)
+            const res = await supertest(server)
                 .post('/api/auth/login')
                 .send({ username: 'frania', password: 'frania' })
-                .then(res => {
+                // .then(res => {
                     expect(res.status).toBe(201)
-                })
+                // })
         })
 
         it('should respond with a welcome message and token', () => {
@@ -136,5 +144,9 @@ describe('auth-router', () => {
                 })
         })
     })
+
+})
+
+it('', () => {
 
 })
